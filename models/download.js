@@ -2,23 +2,27 @@ const mongoose = require('mongoose');
 
 const downloadSchema = new mongoose.Schema({
 
-  downloadId: { 
-    type: String, 
-    required: true, 
-    unique: true },
+  // downloadId: { 
+  //   type: String, 
+  //   required: true, 
+  //   unique: true 
+  // },
 
   appId: { 
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'Application', required: true },
+    ref: 'Application', required: true 
+  },
 
   userId: { 
     type: mongoose.Schema.Types.ObjectId, 
     ref: 'User', 
-    required: true },
+    required: true 
+  },
 
   downloadDate: { 
     type: Date, 
-    required: true }
+    required: true 
+  }
 });
 
 const Download = mongoose.model('Download', downloadSchema);

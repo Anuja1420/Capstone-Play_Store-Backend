@@ -1,12 +1,7 @@
-// models/Review.js
+// models/Review.js /Comments
 const mongoose = require('mongoose');
 
 const reviewSchema = new mongoose.Schema({
-  reviewId: {
-    type: String,
-    unique: true,
-    required: true
-  },
   appId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Application',

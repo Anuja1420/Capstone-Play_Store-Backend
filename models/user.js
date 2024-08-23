@@ -15,7 +15,16 @@ const userSchema = new mongoose.Schema({
       type: String,
       enum: ['user', 'admin'],
       required: true
-    }
+    },
+    status: {
+      type: String,
+      enum: ['active', 'inactive'],
+      default: 'active'
+  }
+    // notificationsId:[{ 
+    //     type: mongoose.Schema.Types.ObjectId, 
+    //     ref: 'Notification' 
+    //   }]
   });
 
 userSchema.pre('save', async function(next) {

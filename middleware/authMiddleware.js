@@ -5,7 +5,7 @@ const BlacklistedToken = require('../models/blacklistedToken.js');
 
 
 // Protect routes (ensure the user is logged in)
-const protect = async (req, res, next) => {
+const protect = async (req, res, next) => {//Need to provide token for authorization
   let token;
 
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
@@ -34,7 +34,7 @@ const protect = async (req, res, next) => {
 
 // Admin middleware (ensure the user is an admin)
 const admin = (req, res, next) => {
-  if (req.user && req.user.role === "admin") {
+  if (req.user && req.user.role === "admin") {//Only admin can access those routes
       next();
   } else {
       res.status(403).json({ message: 'Not authorized as a user' });
