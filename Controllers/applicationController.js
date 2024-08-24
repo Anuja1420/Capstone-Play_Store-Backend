@@ -87,39 +87,61 @@ const getApplicationsByGenre = async (req, res) => {
     }
 };
 
-// Get applications by category
-const getApplicationsByCategory = async (req, res) => {
+// // Get applications by category
+// const getApplicationsByCategory = async (req, res) => {
+//   try {
+//       const { category } = req.params;
+//       // if(!category){
+//       //   const applications = await applications.find();
+//       //   res.status(200).json(applications);
+//       // }
+//       const applications = await Application.find({ category });
+//       if (applications.length === 0) {
+//           return res.status(404).json({ message: 'No applications found for this category' });
+//       }
+//       res.status(200).json(applications);
+//   } catch (error) {
+//       res.status(500).json({ error: error.message });
+//   }
+// };
+
+// // Get applications by rating
+
+const getAppFilterByRating = async (req, res) => {
   try {
-      const { category } = req.params;
-      // if(!category){
-      //   const applications = await applications.find();
-      //   res.status(200).json(applications);
-      // }
-      const applications = await Application.find({ category });
-      if (applications.length === 0) {
-          return res.status(404).json({ message: 'No applications found for this category' });
-      }
-      res.status(200).json(applications);
+    const { ratings } = req.query; // Changed to req.query to match the query parameter
+
+    // Find applications with the exact rating
+    const applications = await Application.find({ ratings: Number(ratings)});
+
+    if (applications.length === 0) {
+      return res.status(404).json({ message: 'No applications found with the given rating' });
+    }
+
+    res.status(200).json(applications);
   } catch (error) {
-      res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
 
-// Get applications by rating
-const getApplicationsByRating = async (req, res) => {
+// // Get applications by rating
+
+const getAppFilterByCategory = async (req, res) => {
   try {
-      const { rating } = req.params;
-      const applications = await Application.find({ rating });
-      if (applications.length === 0) {
-          return res.status(404).json({ message: 'No applications found for this rating' });
-      }
-      res.status(200).json(applications);
+    const { category } = req.query; // Changed to req.query to match the query parameter
+
+    // Find applications with the exact rating
+    const applications = await Application.find({ category : category });
+
+    if (applications.length === 0) {
+      return res.status(404).json({ message: 'No applications found with the given rating' });
+    }
+
+    res.status(200).json(applications);
   } catch (error) {
-      res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
-
-
 
 
 // Update an application by ID
@@ -200,7 +222,7 @@ const restrictAppVisibility = async (req, res) => {
 
 
 module.exports={postApplication,getApplication,
-    getApplicationsByGenre,getApplicationsByCategory,getApplicationsByRating,
+    getApplicationsByGenre,getAppFilterByCategory,getAppFilterByRating,
     
     updateAppById,deleteAppById,restrictAppVisibility,getAppByName,getAppByCatAndRat};
 

@@ -4,8 +4,8 @@ const router = express.Router();
 const { protect, admin } = require('../middleware/authMiddleware.js');
 
 const {
-    postApplication,getApplication,getApplicationsByGenre,getApplicationsByCategory,
-    getApplicationsByRating,getAppByName,updateAppById,deleteAppById,restrictAppVisibility,getAppByCatAndRat} 
+    postApplication,getApplication,getApplicationsByGenre,getAppFilterByCategory,
+    getAppFilterByRating,getAppByName,updateAppById,deleteAppById,restrictAppVisibility,getAppByCatAndRat} 
        = require('../Controllers/applicationController.js');
 
 
@@ -15,13 +15,15 @@ router.post('/applications/createapp', protect,admin, postApplication);
 router.get('/getapp',getApplication);//*************** */
 
 router.get('/genre/:genre',getApplicationsByGenre);//Anybody can search the app by genre
-router.get('/category/:category',getApplicationsByCategory);//Anybody can search the app by Category
-router.get('/rating/:rating',getApplicationsByRating);//Anybody can search the app by rating
+router.get('/getbycategory',getAppFilterByCategory);//Anybody can search the app by Category
+//router.get('/rating/:rating',getApplicationsByRating);//Anybody can search the app by rating
 //router.get('/appname/:name',getApplicationsByName);//Anybody can search the app by it's name
 //router.get('/applications/searchapp',searchAppByName); //****************** */
 
 router.get('/applications/appbyname/:name',getAppByName);
 router.get('/getcatrat',getAppByCatAndRat)//**** */
+
+router.get('/getbyrating',getAppFilterByRating);
 
 
 router.put("/updateapp/appId/:id",protect,admin,updateAppById);//Update app by appid admin token
