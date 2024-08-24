@@ -10,7 +10,7 @@ router.get('/review/:appId/:userId',protect,getAllReviews);
 router.get('/review/id/:id',protect,getReviewById);
 
 // router.post('/review/:appId/:userId',protect,createReview);
-router.post('/review/:appId/:userId', protect, createReview);
+router.post('/reviews/:appId/:userId', protect, createReview);
 
 
 router.put('/update/id/:id',protect,updateReviewById);

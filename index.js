@@ -2,6 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const users = require('./routes/userRoutes.js');
 const applications = require('./routes/applicationRoutes');
+const downloadApp = require('./routes/downloadRoutes.js');
+const reviews = require('./routes/reviewRoutes.js');
+// 
 //const notifications = require('./routes/notificationRoutes');
 const cors = require('cors');   //TO connect it with UI React
 const bodyParser=require('body-parser');  //you can use express.js directly 
@@ -34,6 +37,9 @@ app.use(cors({  //To connect frontend with backend
  
 app.use('/users',users); 
 app.use('/application',applications);
+app.use('/download',downloadApp);
+app.use('/review',reviews);
+
 //app.use('/notification',notifications);
 
 

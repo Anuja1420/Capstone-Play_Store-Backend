@@ -37,7 +37,7 @@ const applicationSchema = new mongoose.Schema({
   },
   ownerId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: 'Users',
     required: true
   },
   // userId: {
@@ -52,8 +52,11 @@ const applicationSchema = new mongoose.Schema({
   imageUrl: {  // Add this line
     type: String,
     required: false
+  },
+  review : {
+    type : String,
+    required : false
   }
-
 });
 
 module.exports = mongoose.model('Application', applicationSchema);

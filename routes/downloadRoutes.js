@@ -1,13 +1,24 @@
+// const express = require('express');
+// const router = express.Router();
+
+// const { protect, admin } = require('../middleware/authMiddleware.js');
+
+// const {downloadApplication} 
+//        = require('../Controllers/downloadController.js');
+
+
+// router.post('/applications/:appId/download',downloadApplication);
+
+
+// module.exports = router;
+
+
 const express = require('express');
 const router = express.Router();
+const { protect } = require('../middleware/authMiddleware.js');
+const { downloadApplication } = require('../Controllers/downloadController.js');
 
-const { protect, admin } = require('../middleware/authMiddleware.js');
-
-const {downloadApplication} 
-       = require('../Controllers/reviewController.js');
-
-
-router.post('/applications/:appId/download',protect, downloadApplication);
-
+// Use the protect middleware for this route
+router.post('/applications/:appId/download', protect,downloadApplication);
 
 module.exports = router;
