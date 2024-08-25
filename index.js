@@ -28,7 +28,7 @@ app.listen(PORT , ()=>{
 app.use(bodyParser.json());
 // app.use(cors());
 app.use(cors({  //To connect frontend with backend
-    origin: 'http://localhost:3000', // Replace with your frontend's URL/Port
+    origin: 'http://localhost:3001', // Replace with your frontend's URL/Port
     methods : ["GET", "POST", "PUT", "DELETE"]  
 
 }));
