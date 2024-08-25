@@ -35,6 +35,10 @@ const applicationSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
+  owner :{  //Added this
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Users'
+  },
   ownerId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Users',
@@ -59,6 +63,7 @@ const applicationSchema = new mongoose.Schema({
   },
   downloadcount :{
     type : Number,
+    default : 0,
     required : false
   }
 });

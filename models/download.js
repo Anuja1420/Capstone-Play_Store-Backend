@@ -41,12 +41,16 @@ const downloadSchema = new mongoose.Schema({
   },
   userId: { 
     type: mongoose.Schema.Types.ObjectId, 
-    ref: 'users', 
+    ref: 'Users', 
     required: true 
   },
   downloadDate: { 
     type: Date, 
     required: true 
+  },
+  ownerId: {  //Added owner 25 Aug
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Users'
   }
 });
 

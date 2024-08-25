@@ -19,6 +19,6 @@ const { protect } = require('../middleware/authMiddleware.js');
 const { downloadApplication } = require('../Controllers/downloadController.js');
 
 // Use the protect middleware for this route
-router.post('/applications/:appId/download', protect,downloadApplication);
+router.post('/applications/:appId',downloadApplication);
 
 module.exports = router;
