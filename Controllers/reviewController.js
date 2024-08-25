@@ -2,39 +2,28 @@ const Review = require('../models/reviews.js');
 const Application = require('../models/application.js');
 const User = require('../models/user.js');
 
-// Create a new review
-const createReview = async (req, res) => {
-try {
-  const { appId, userId } = req.params;
-  const { review, rating } = req.body;
-  const newReview = new Review({ appId, userId, review, rating });
-  await newReview.save();
-  res.status(201).json({ message: 'Review created successfully', review: newReview });
-} catch (error) {
-  console.error('Error saving review:', error);
-  res.status(500).json({ message: 'Failed to save review' });
-}
+
+//Create a new review *****Now
+const postNewReview = async (req, res) => {
+  try {
+      const { appId, userId } = req.params;
+      const { review, rating } = req.body;
+
+      const newReview = new Review({
+          appId,
+          userId,
+          review,
+          rating,
+      });
+
+      await newReview.save();
+      res.status(201).json({ message: 'Review created successfully', review: newReview });
+  } catch (error) {
+      console.error('Error saving review:', error);
+      res.status(500).json({ message: 'Failed to save review' });
+  }
 };
 
-// Create a new review
-// const createReview = async (req, res) => {
-//     try {
-//         const { reviewId, comment, rating } = req.body;
-//         const { appId, userId } = req.params;
-  
-//       // Validate that the appId and userId exist
-//       const application = await Application.findById(appId);
-//       const user = await User.findById(userId);
-//       if (!application) return res.status(404).json({ message: 'Application not found' });
-//       if (!user) return res.status(404).json({ message: 'User not found' });
-  
-//       const review = new Review({ reviewId, appId, userId, comment, rating });
-//       await review.save();
-//       res.status(201).json(review);
-//     } catch (error) {
-//       res.status(400).json({ error: error.message });
-//     }
-//   };
 
 //get all reviews
   const getAllReviews = async (req, res) => {
@@ -71,7 +60,7 @@ const getReviewById = async (req, res) => {
 };
 
 //
-// Get reviews for a specific application
+// Get reviews for a specific application*****Now
 const getReviewsByAppId = async (req, res) => {
     try {
         const { appId } = req.params;
@@ -113,7 +102,7 @@ const deleteReviewById = async (req, res) => {
   }
 };
 
-module.exports = {createReview, getAllReviews, getReviewById,getReviewsByAppId, updateReviewById, deleteReviewById};
+module.exports = {postNewReview, getAllReviews, getReviewById,getReviewsByAppId, updateReviewById, deleteReviewById};
 
 
 

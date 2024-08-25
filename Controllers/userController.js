@@ -99,7 +99,7 @@ const getAllUsers= async (req,res)=>{
       const users = await Users.find();
       res.status(200).send(users);
   }catch(error){
-      res.status(500).send({message:error});
+      res.status(500).send({ error: error.message });
   }
 };
 

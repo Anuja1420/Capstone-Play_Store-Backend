@@ -32,11 +32,11 @@ router.post('/login',loginUser);
 router.post('/logout', logoutUser);
 
 router.get('/profile/userId/:id',protect,admin,getUserProfile);//Get user profile by userId and admin token.Only admin can see user profile
-router.get("/",protect,admin,getAllUsers); //Only admin can see all users
+router.get("/fetchusers",getAllUsers); //Only admin can see all users
 router.get("/userId/:id",protect,admin,getUserById);//Only admin can get user by id
 router.put("/deactivate/userId/:id",protect,admin,deactivateUser);
 router.put('/activate/userId/:id',protect,admin,activateUser);
-router.delete("/deleteuser/userId/:id",protect,admin,deleteUserById,);
+router.delete("/deleteuser/userId/:id",deleteUserById,);
        
 
 module.exports = router;

@@ -19,37 +19,26 @@ const postApplication = async (req, res) => {
   }
 };
 
-// // Create a new application
-// const postApplication = async (req, res) => {
-//     try {
-//       const application = new Application(req.body);
-//       await application.save();
-//       res.status(201).json(application);
-//     } catch (error) {
-//       res.status(400).json({ error: error.message });
-//     }
-//   }
-  
-// //Get application for visibility
-// const getApplication = async (req, res) => {
-//   try {
-//       const isAdmin = req.user.role === 'admin'; // Check if the user is an admin
-//       const applications = await Application.find({
-//           ...(isAdmin ? {} : { visibility: true }) // Only show visible applications to non-admins
-//       });
-
-//       res.status(200).json(applications);
-//   } catch (error) {
-//       res.status(500).json({ error: error.message });
-//   }
-// };
-
 
 //Get Application
 const getApplication =  async (req, res) => {
     try {
       const applications = await Application.find();
       res.status(200).json(applications);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+
+  //Get app by appId //getAppByAppId
+  const getAppByAppId =  async (req, res) => {
+    try {
+      const application = await Application.findById(req.params.appId);
+      if(!application){
+        return res.status(404).send({message: 'Application not found'});
+      }
+      res.status(200).send(application);
+      // res.status(200).json(applications);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -86,26 +75,6 @@ const getApplicationsByGenre = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-
-// // Get applications by category
-// const getApplicationsByCategory = async (req, res) => {
-//   try {
-//       const { category } = req.params;
-//       // if(!category){
-//       //   const applications = await applications.find();
-//       //   res.status(200).json(applications);
-//       // }
-//       const applications = await Application.find({ category });
-//       if (applications.length === 0) {
-//           return res.status(404).json({ message: 'No applications found for this category' });
-//       }
-//       res.status(200).json(applications);
-//   } catch (error) {
-//       res.status(500).json({ error: error.message });
-//   }
-// };
-
-// // Get applications by rating
 
 const getAppFilterByRating = async (req, res) => {
   try {
@@ -221,7 +190,7 @@ const restrictAppVisibility = async (req, res) => {
 
 
 
-module.exports={postApplication,getApplication,
+module.exports={postApplication,getApplication,getAppByAppId,
     getApplicationsByGenre,getAppFilterByCategory,getAppFilterByRating,
     
     updateAppById,deleteAppById,restrictAppVisibility,getAppByName,getAppByCatAndRat};

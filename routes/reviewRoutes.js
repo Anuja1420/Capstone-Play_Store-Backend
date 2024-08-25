@@ -3,14 +3,18 @@ const router = express.Router();
 
 const { protect, admin } = require('../middleware/authMiddleware.js');
 
-const {getAllReviews,getReviewById,createReview,updateReviewById,deleteReviewById} 
+const {postNewReview,getReviewsByAppId,getAllReviews,getReviewById,createReview,updateReviewById,deleteReviewById} 
        = require('../Controllers/reviewController.js');
 
-router.get('/review/:appId/:userId',protect,getAllReviews);
+router.post('/reviews/appId/:appId/userId/:userId',postNewReview)
+router.get('/reviews/:appId',getReviewsByAppId)
+//-----------------------
+
+router.get('/reviews/:appId/:userId',protect,getAllReviews);
 router.get('/review/id/:id',protect,getReviewById);
 
 // router.post('/review/:appId/:userId',protect,createReview);
-router.post('/reviews/:appId/:userId', protect, createReview);
+//router.post('/reviews/:appId/:userId', protect, createReview);
 
 
 router.put('/update/id/:id',protect,updateReviewById);

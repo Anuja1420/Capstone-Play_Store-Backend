@@ -56,6 +56,10 @@ const applicationSchema = new mongoose.Schema({
   review : {
     type : String,
     required : false
+  },
+  downloadcount :{
+    type : Number,
+    required : false
   }
 });
 
