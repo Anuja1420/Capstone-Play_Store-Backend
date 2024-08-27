@@ -35,7 +35,7 @@ const applicationSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
-  owner :{  //Added this
+  owner :{  
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Users'
   },
@@ -44,16 +44,11 @@ const applicationSchema = new mongoose.Schema({
     ref: 'Users',
     required: true
   },
-  // userId: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'User',
-  //   required: true
-  // },
   createdAt: {
     type: Date,
     default: Date.now
   },
-  imageUrl: {  // Add this line
+  imageUrl: {  
     type: String,
     required: false
   },

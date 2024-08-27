@@ -93,7 +93,7 @@ const getAppFilterByRating = async (req, res) => {
   }
 };
 
-// // Get applications by rating
+// Get applications by rating
 
 const getAppFilterByCategory = async (req, res) => {
   try {
@@ -139,6 +139,7 @@ const updateAppById = async (req, res) => {
     }
   };
 
+//Restrict app visibility  
 const restrictAppVisibility = async (req, res) => {
     try {
         const { id } = req.params;
@@ -162,9 +163,6 @@ const restrictAppVisibility = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-
-//Get category and rating
-// GET /applications
 
   // GET /applications/filter
   getAppByCatAndRat= async (req, res) => {
@@ -192,6 +190,5 @@ const restrictAppVisibility = async (req, res) => {
 
 module.exports={postApplication,getApplication,getAppByAppId,
     getApplicationsByGenre,getAppFilterByCategory,getAppFilterByRating,
-    
-    updateAppById,deleteAppById,restrictAppVisibility,getAppByName,getAppByCatAndRat};
+    updateAppById,deleteAppById,restrictAppVisibility,getAppByName};
 

@@ -24,18 +24,20 @@ const { protect, admin } = require('../middleware/authMiddleware.js');
 const {loginUser,registerUser,logoutUser,
        getUserProfile,getAllUsers,
        getUserById,deleteUserById,
-       deactivateUser,activateUser} 
+       } 
        = require('../Controllers/userController.js');
 
-router.post('/register',registerUser);
-router.post('/login',loginUser);
-router.post('/logout', logoutUser);
+router.post('/register',registerUser); //Register the user
+router.post('/login',loginUser); //Login the user
+router.post('/logout', logoutUser); //Logout the user
 
-router.get('/profile/userId/:id',protect,admin,getUserProfile);//Get user profile by userId and admin token.Only admin can see user profile
+//Get user profile by userId and admin token.Only admin can see user profile
+router.get('/profile/userId/:id',protect,admin,getUserProfile);
+
 router.get("/fetchusers",getAllUsers); //Only admin can see all users
+
 router.get("/userId/:id",protect,admin,getUserById);//Only admin can get user by id
-router.put("/deactivate/userId/:id",protect,admin,deactivateUser);
-router.put('/activate/userId/:id',protect,admin,activateUser);
+
 router.delete("/deleteuser/userId/:id",deleteUserById,);
        
 

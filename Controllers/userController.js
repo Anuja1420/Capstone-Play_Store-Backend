@@ -117,7 +117,7 @@ const getUserById= async (req,res)=>{
 };
 
 
-//Delete User By Id.........Delete //Only admin can delete user  --> admin token
+//Delete User By Id.........Delete //Only admin can delete user 
 const deleteUserById = async (req,res)=>{
   try{
       const user = await Users.findByIdAndDelete(req.params.id);
@@ -131,31 +131,7 @@ const deleteUserById = async (req,res)=>{
   }
 };
 
-//Deactivate User.........Put //Only admin can deactivate user --> admin token
-const deactivateUser= async (req,res)=>{
-  try{
-      const user = await Users.findByIdAndUpdate(req.params.id , { status:'inactive' }, {new:true}); //Find users by id and make them inactive.
-      if(!user){
-          return res.status(404).send({message:'User not found'});
-      }
-      res.send({message:"User Deactivated",user});
-  }catch(error){
-      res.status(500).send({message:error});
-  }
-};
-
-//Activate User.........Put  //Only admin can activate user --> admin token
-const activateUser = async (req,res)=>{
-  try{
-      const user = await Users.findByIdAndUpdate(req.params.id , { status:'active' }, {new:true});//Find users by id and make them active.
-      if(!user){
-          return res.status(404).send({message:'User not found'});
-      }
-      res.send({message:"User Activated",user});
-  }catch(error){
-      res.status(500).send({message:error});
-  }
-};
 
 
-module.exports={loginUser,registerUser,logoutUser,getUserProfile,getAllUsers,getUserById,deleteUserById,deactivateUser,activateUser};
+
+module.exports={loginUser,registerUser,logoutUser,getUserProfile,getAllUsers,getUserById,deleteUserById};

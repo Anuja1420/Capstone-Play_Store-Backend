@@ -15,11 +15,6 @@ const createNotification = async (req, res) => {
 
         await notification.save();
 
-        // Optionally, you can also push the notification reference to the user's notifications array
-        // const user = await Users.findById(recipient);
-        // user.notifications.push(notification._id);
-        // await user.save();
-
         res.status(201).json(notification);
     } catch (error) {
         res.status(500).json({ message: 'Server Error', error });

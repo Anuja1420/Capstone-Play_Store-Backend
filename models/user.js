@@ -21,10 +21,6 @@ const userSchema = new mongoose.Schema({
       enum: ['active', 'inactive'],
       default: 'active'
   }
-    // notificationsId:[{ 
-    //     type: mongoose.Schema.Types.ObjectId, 
-    //     ref: 'Notification' 
-    //   }]
   });
 
 userSchema.pre('save', async function(next) {
