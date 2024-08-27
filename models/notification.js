@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const notificationSchema = new mongoose.Schema({
+    title :{
+        type : String,
+        required : true
+    },
     recipient: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Users', //Updated Reference
@@ -25,10 +29,10 @@ const notificationSchema = new mongoose.Schema({
     }
 });
 
-const Notification = mongoose.model('Notification', notificationSchema);
+// const Notification = mongoose.model('Notification', notificationSchema);
 
-module.exports = Notification;
-
+// module.exports = Notification;
+module.exports = mongoose.model('Notification', notificationSchema);
 
 
 // const mongoose = require('mongoose');
