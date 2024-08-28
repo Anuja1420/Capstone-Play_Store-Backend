@@ -15,7 +15,7 @@ const downloadSchema = new mongoose.Schema({
     type: Date, 
     required: true 
   },
-  ownerId: {  //Added owner 25 Aug
+  ownerId: {  //Added owner 
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Users'
   }

@@ -6,7 +6,7 @@ const { protect, admin } = require('../middleware/authMiddleware.js');
 const {postNewReview,getReviewsByAppId,getAllReviews,getReviewById,updateReviewById,deleteReviewById} 
        = require('../Controllers/reviewController.js');
 
-router.post('/reviews/appId/:appId/userId/:userId',postNewReview) //Create new review
+router.post('/reviews/appId/:appId/userId/:userId',protect,postNewReview) //Create new review
 router.get('/reviews/:appId',getReviewsByAppId) //Get reviews by appid
 
 

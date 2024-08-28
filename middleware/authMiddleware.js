@@ -10,15 +10,16 @@ const protect = async (req, res, next) => {//Need to provide token for authoriza
 
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     try {
-      token = req.headers.authorization.split(' ')[1];
+      token = req.headers.authorization.split(' ')[1]; //Splits the authorization header into two parts
+      //The first part ([0]) will be the string Bearer, and the second part ([1]) will be the actual token.
+
 
   // Check if token is blacklisted
-
   const blacklistedToken = await BlacklistedToken.findOne({ token });
 
   if (blacklistedToken) return res.status(403).json({ message: 'Token has been blacklisted' });
 
-        // Verify the token
+      // Verify the token
       const decoded = jwt.verify(token, 'jwt_secret_token'); // Write this "jwt_secret_token" token in JWT Bearer while register and login
       req.user = await User.findById(decoded.id).select('-password'); //"-password" --> password excluded
       next();

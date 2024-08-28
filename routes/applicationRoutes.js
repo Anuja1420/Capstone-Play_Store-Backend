@@ -5,7 +5,7 @@ const { protect, admin } = require('../middleware/authMiddleware.js');
 
 const {
     postApplication,getApplication,getAppByAppId,getApplicationsByGenre,getAppFilterByCategory,
-    getAppFilterByRating,getAppByName,updateAppById,deleteAppById,restrictAppVisibility} 
+    getAppFilterByRating,getAppByName,updateAppById,deleteAppById} 
        = require('../Controllers/applicationController.js');
 
 
@@ -22,14 +22,14 @@ router.get('/getbycategory',protect,getAppFilterByCategory);//Anybody can search
 
 router.get('/applications/appbyname/:name',protect,getAppByName);//Get application by name
 
-router.get('/getbyrating',protect,getAppFilterByRating);//Get application by rating
+router.get('/getbyrating',protect,getAppFilterByRating);//Get application by rating 
 
 
 router.put("/updateapp/appId/:id",protect,admin,updateAppById);//Update app by appid admin token
 
 router.delete("/deleteapp/appId/:id",protect,admin,deleteAppById,);//Delete app by appid Admin token
 
-router.patch('/applications/:id/restrict',protect,restrictAppVisibility); //Admin can restrict visibility
+
 
 
 module.exports = router;
