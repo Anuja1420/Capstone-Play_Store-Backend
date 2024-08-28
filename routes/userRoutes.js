@@ -31,7 +31,7 @@ router.post('/register',registerUser); //Register the user
 router.post('/login',loginUser); //Login the user
 router.post('/logout', logoutUser); //Logout the user
 
-//Get user profile by userId and admin token.Only admin can see user profile
+//Get user profile by userId and admin token. Only admin can see user profile
 router.get('/profile/userId/:id',protect,admin,getUserProfile);
 
 router.get("/fetchusers",getAllUsers); //Only admin can see all users

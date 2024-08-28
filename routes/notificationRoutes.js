@@ -9,7 +9,7 @@ const { protect, admin } = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-//Both user and admin can send notification
+//Both user and admin can send notification //Notification will sent automatically
 router.post('/notifications',createNotification); 
 
 // Route to get all notifications for the logged-in user / admin

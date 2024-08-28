@@ -103,7 +103,7 @@ const getAppFilterByCategory = async (req, res) => {
     const applications = await Application.find({ category : category });
 
     if (applications.length === 0) {
-      return res.status(404).json({ message: 'No applications found with the given rating' });
+      return res.status(404).json({ message: 'No applications found with the given category' });
     }
 
     res.status(200).json(applications);
