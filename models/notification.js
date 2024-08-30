@@ -7,7 +7,7 @@ const notificationSchema = new mongoose.Schema({
     },
     recipient: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Users', //Updated Reference
+        ref: 'Users', 
         required: true
     },
     application: {
@@ -21,7 +21,7 @@ const notificationSchema = new mongoose.Schema({
     },
     isRead: {
         type: Boolean,
-        default: false // Indicates whether the notification has been read
+        default: false 
     },
     createdAt: {
         type: Date,

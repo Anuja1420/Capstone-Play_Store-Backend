@@ -38,7 +38,7 @@ const loginUser=async (req,res)=>{
   try{
       const {username,password}=req.body
       const user=await Users.findOne({username});
-    //   if(user && await user.matchPassword(password) && user.status==='active'){
+      
         if(user && await user.matchPassword(password)){
           res.status(200).send({
               _id: user._id,
@@ -74,7 +74,7 @@ const logoutUser = async (req, res) => {
     }
 };
 
-//Get User Profile..........Get //Provide admin Bearer Token and userId in path
+//Get User Profile..
 const getUserProfile = async (req, res) => {
   try{
       const user = await Users.findById(req.user.id);
@@ -93,7 +93,7 @@ const getUserProfile = async (req, res) => {
   }
 };
 
-//Get All Users......Get  //Admin can get all users by admin token
+//Get All Users......
 const getAllUsers= async (req,res)=>{
   try{
       const users = await Users.find();
@@ -103,7 +103,7 @@ const getAllUsers= async (req,res)=>{
   }
 };
 
-//Get User By Id....Get  //Admin can get users by userId --> admin token
+//Get User By Id....
 const getUserById= async (req,res)=>{
   try{
       const user = await Users.findById(req.params.id);
@@ -117,14 +117,14 @@ const getUserById= async (req,res)=>{
 };
 
 
-//Delete User By Id.........Delete //Only admin can delete user 
+//Delete User By Id..//Only admin can delete user 
 const deleteUserById = async (req,res)=>{
   try{
       const user = await Users.findByIdAndDelete(req.params.id);
       if(!user){
           return res.status(404).send({message:'User not found'});
       }
-      // res.status(200).send(user);
+      
       res.send('User deleted Successfully');
   }catch(error){
       res.status(500).send({message:error});

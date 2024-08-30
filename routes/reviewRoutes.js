@@ -10,8 +10,8 @@ router.post('/reviews/appId/:appId/userId/:userId',protect,postNewReview) //Crea
 router.get('/reviews/:appId',getReviewsByAppId) //Get reviews by appid
 
 
-router.get('/reviews/:appId/:userId',protect,getAllReviews); //Get all reviews
-router.get('/review/id/:id',protect,getReviewById);//Get review by review id
+router.get('/reviews/:appId/:userId',getAllReviews); //Get all reviews
+router.get('/review/id/:id',getReviewById);//Get review by review id
 
 
 router.put('/update/id/:id',protect,updateReviewById);//Update reiew by review id

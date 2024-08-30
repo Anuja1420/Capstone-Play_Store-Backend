@@ -38,7 +38,7 @@ const getApplication =  async (req, res) => {
         return res.status(404).send({message: 'Application not found'});
       }
       res.status(200).send(application);
-      // res.status(200).json(applications);
+      
     } catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -76,6 +76,7 @@ const getApplicationsByGenre = async (req, res) => {
     }
 };
 
+// Get applications by rating
 const getAppFilterByRating = async (req, res) => {
   try {
     const { ratings } = req.query; // Changed to req.query to match the query parameter
@@ -93,13 +94,13 @@ const getAppFilterByRating = async (req, res) => {
   }
 };
 
-// Get applications by rating
+// Get applications by category
 
 const getAppFilterByCategory = async (req, res) => {
   try {
     const { category } = req.query; // Changed to req.query to match the query parameter
 
-    // Find applications with the exact rating
+    // Find applications with the exact category
     const applications = await Application.find({ category : category });
 
     if (applications.length === 0) {
@@ -163,29 +164,6 @@ const restrictAppVisibility = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-
-  // GET /applications/filter
-  getAppByCatAndRat= async (req, res) => {
-  try {
-    const { category, minRating } = req.query;
-    const query = {};
-
-    if (category) {
-      query.category = category;
-    }
-    if (minRating) {
-      query.rating = { $gte: minRating };
-    }
-
-    const applications = await Application.find(query);
-    res.json(applications);
-  } catch (error) {
-    res.status(500).send('Server Error');
-  }
-};
-
-
-
 
 
 module.exports={postApplication,getApplication,getAppByAppId,

@@ -12,11 +12,11 @@ const {
 
 router.post('/applications/createapp', protect,admin, postApplication);
 
-router.get('/getapp',getApplication);//get all applications
+router.get('/getapp',protect,getApplication);//get all applications
 
-router.get('/getappbyappid/:appId',protect,getAppByAppId);
+router.get('/getappbyappid/:appId',protect,getAppByAppId); //Both user and admin can see applications
 
-router.get('/genre/:genre',getApplicationsByGenre);//Anybody can search the app by genre
+router.get('/genre/:genre',protect,getApplicationsByGenre);//Anybody can search the app by genre
 
 router.get('/getbycategory',protect,getAppFilterByCategory);//Anybody can search the app by Category
 
